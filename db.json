@@ -1,3 +1,18 @@
 {
-  "contacts": []
+  "contacts": [
+    {
+      "id": 1,
+      "name": "Karkuvel",
+      "email": "pkp@gmail.com",
+      "status": true,
+      "image": "imageUrl"
+    },
+    {
+      "id": 1,
+      "name": "Karkuvel",
+      "email": "pkp@gmail.com",
+      "status": true,
+      "image": "imageUrl"
+    }
+  ]
 }
