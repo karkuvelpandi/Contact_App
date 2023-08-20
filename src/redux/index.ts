@@ -4,6 +4,7 @@ import rootSaga from "./sagas";
 import appSlice from "./app.slice";
 import visibilitySlice from "./visibility.slice";
 import contactsSlice from "../components/Contacts/contacts.slice";
+import analyticsSlice from "../components/Dashboard/analytics.slice";
 //
 const sagaMiddleware = createSagaMiddleware();
 //
@@ -14,7 +15,7 @@ const store = configureStore({
     app: appSlice,
     visibility: visibilitySlice,
     contact: contactsSlice,
-    // contacts:contactsSlice
+    analytics: analyticsSlice,
   },
   middleware,
 });

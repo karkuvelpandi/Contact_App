@@ -5,10 +5,14 @@ type ButtonProps = {
   className?: string;
   bgColor?: string;
   textColor?: string;
+  onClick?: () => void;
+  disabled?: boolean;
 };
 export const Button = (props: ButtonProps) => {
   return (
     <button
+      disabled={props.disabled}
+      onClick={props.onClick}
       className={`h-auto p-2 rounded-md ${props.className}`}
       style={{
         backgroundColor: props.bgColor ? props.bgColor : "blue",

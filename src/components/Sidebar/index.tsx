@@ -24,7 +24,7 @@ export const Sidebar = () => {
   return (
     <>
       <section
-        className={`w-auto h-full absolute z-10 sm:h-auto sm:relative sm:block sm:w-52 bg-[#D9D9D9] translate-x-0 ${
+        className={`w-auto h-full absolute z-10 sm:z-0 sm:h-auto sm:relative sm:block sm:w-52 bg-[#D9D9D9] translate-x-0 ${
           isSidebarVisible ? "block" : "hidden"
         }`}
       >

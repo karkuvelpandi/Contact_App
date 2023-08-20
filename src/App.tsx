@@ -6,7 +6,10 @@ import { setAppOffline } from "./redux/app.slice";
 import { ContactPage } from "./pages/ContactPage";
 import { useWindowSize } from "./hooks/useWindowSize";
 import { switchMobileView } from "./redux/visibility.slice";
-import { getAllContacts } from "./components/Contacts/contacts.slice";
+import {
+  getAllContacts,
+  getContact,
+} from "./components/Contacts/contacts.slice";
 
 const App = () => {
   const dispatch = useDispatch();
