@@ -26,17 +26,17 @@ export const CovidDashboard = () => {
   );
 
   return (
-    <div className=" w-full min-h-[425px] p-2 border-2 rounded-md ">
-      <p className="text-lg font-semibold text-center p-1 bg-[#d9d9d9] rounded-full">
+    <div className=" w-full min-h-[425px] p-2 rounded-md ">
+      {/* <p className="text-lg font-semibold text-center p-1 bg-[#d9d9d9] rounded-full">
         World Covid-19 Overall - Dashboard
-      </p>
+      </p> */}
       {worldCovidDataStatus === AsyncState.PENDING && (
         <div className="w-full absolute top-36 flex justify-center items-center">
           <Loader size="lg" />
         </div>
       )}
       {worldCovidDataStatus === AsyncState.FULFILLED && (
-        <div className="p-2 flex gap-3 flex-wrap mt-3">
+        <div className="p-2 flex gap-3 flex-wrap mt-1">
           <DashboardCard
             title="Today New Cases"
             svgIconSize={isMobileView ? "md" : "lg"}
@@ -52,7 +52,7 @@ export const CovidDashboard = () => {
             svgIconSize={isMobileView ? "md" : "lg"}
             dataCount={worldCovidData.cases}
             bgColor="yellow"
-            svgIcon={total}
+            svgIcon={thermometer}
             excessPoint={
               Math.floor(
                 (worldCovidData.cases / worldCovidData.population) * 100
@@ -92,7 +92,7 @@ export const CovidDashboard = () => {
             svgIconSize={isMobileView ? "md" : "lg"}
             dataCount={worldCovidData.tests}
             bgColor="pink"
-            svgIcon={thermometer}
+            svgIcon={total}
             updatedAt={worldCovidData.updated}
           />
           <DashboardCard

@@ -9,6 +9,8 @@ import { Modal } from "../../../ui/Modal/Modal";
 import { Contact } from "../../../types/contact";
 import { Button } from "../../../ui/Button/Index";
 import defaultImg from "../../../ui/images/contact.png";
+import deleteIcon from "../../../ui/svgs/deleteIcon.svg";
+import editIcon from "../../../ui/svgs/editIcon.svg";
 import { deleteContact, getContact, updateContactId } from "../contacts.slice";
 //
 type ContactCardProps = {
@@ -67,8 +69,8 @@ export const ContactCard = (props: ContactCardProps) => {
         </div>
         <div className=" w-full flex justify-around gap-2">
           <Button
-            children="Edit"
-            className="w-20"
+            children={<img src={editIcon} alt="" />}
+            className="w-10 h-10"
             bgColor="green"
             onClick={() => {
               setActiveModal("Edit");
@@ -77,8 +79,8 @@ export const ContactCard = (props: ContactCardProps) => {
             }}
           />
           <Button
-            children="Delete"
-            className="w-20"
+            children={<img src={deleteIcon} alt="" />}
+            className="w-10 h-10"
             bgColor="red"
             onClick={() => setActiveModal("Delete")}
           />

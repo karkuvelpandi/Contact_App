@@ -35,10 +35,10 @@ export const CovidMap = () => {
   // ];
 
   return (
-    <div className=" pageFadeIn w-full h-[425px] p-2 border-2 rounded-md space-y-3">
-      <p className="text-lg font-semibold text-center p-1 bg-[#d9d9d9]  rounded-full">
+    <div className=" pageFadeIn w-full h-[425px] p-2 rounded-md space-y-3">
+      {/* <p className="text-lg font-semibold text-center p-1 bg-[#d9d9d9]  rounded-full">
         World Covid-19 Map - Country Wise
-      </p>
+      </p> */}
       {countryWiseDataStatus === AsyncState.PENDING && (
         <div className="w-full h-4/5 flex justify-center items-center">
           <Loader size="lg" />

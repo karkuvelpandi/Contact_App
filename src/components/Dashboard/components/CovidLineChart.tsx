@@ -49,6 +49,7 @@ export const CovidLineChart = () => {
   //
   const options = {
     chart: {
+      // height: "100%",
       id: "zoomable-chart",
       toolbar: {
         tools: {
@@ -65,10 +66,10 @@ export const CovidLineChart = () => {
   };
   //
   return (
-    <div className=" w-full h-[425px] p-2 border-2 rounded-md">
-      <p className="text-lg font-semibold text-center p-1 bg-[#d9d9d9] rounded-full">
+    <div className=" w-full h-[425px] p-2 rounded-md">
+      {/* <p className="text-lg font-semibold text-center p-1 bg-[#d9d9d9] rounded-full">
         World Covid-19 Fluctuation Graph
-      </p>
+      </p> */}
       {covidGraphDataStatus === AsyncState.PENDING && (
         <div className="w-full h-4/5 flex justify-center items-center">
           <Loader size="lg" />
@@ -79,7 +80,7 @@ export const CovidLineChart = () => {
           options={options}
           series={seriesData}
           type="line"
-          height={350}
+          height={500}
         />
       )}
     </div>

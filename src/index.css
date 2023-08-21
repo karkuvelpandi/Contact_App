@@ -41,7 +41,7 @@ html {
 
 /* Leaflet sizing */
 .leaflet-container {
-  height: 75vh;
+  height: 82vh;
   width: 100%;
   border-radius: 10px;
 }
@@ -78,5 +78,31 @@ html {
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+.gradient {
+  background: linear-gradient(to right,
+      #6f7280,
+      #2a2c3c,
+      #181827,
+      #833ab4,
+      #fd1d1d,
+      #fcb045);
+  background-size: 400% 400%;
+  animation: body 10s infinite ease-in-out;
+}
+
+@keyframes body {
+  0% {
+    background-position: 0 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
   }
 }

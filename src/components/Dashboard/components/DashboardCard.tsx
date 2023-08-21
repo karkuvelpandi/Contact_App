@@ -17,7 +17,7 @@ export const DashboardCard = (props: DashboardCardDesign) => {
   const timeAgoString = timeAgo(props.updatedAt);
   return (
     <div
-      className="pageFadeIn w-auto min-w-fit h-36 px-6 py-2 flex flex-1 justify-around items-center shadow-lg rounded-md"
+      className="pageFadeIn hover:gradient w-auto min-w-fit h-36 px-6 py-2 flex flex-1 justify-around items-center shadow-lg rounded-md"
       style={{
         backgroundColor: props.bgColor,
         color: props.textColor ? props.textColor : "black",
@@ -38,7 +38,7 @@ export const DashboardCard = (props: DashboardCardDesign) => {
         <p className=" text-base sm:text-lg font-semibold">{props.title}</p>
         <CountUp
           duration={10}
-          className="text-xl sm:text-3xl font-bold"
+          className="text-xl sm:text-3xl font-bold animate-pulse"
           end={props.dataCount}
         />
         {props.excessPoint && (
