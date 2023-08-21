@@ -1,10 +1,6 @@
-import React, {
-  PropsWithChildren,
-  //   isValidElement,
-  //   cloneElement,
-  //   Children,
-} from "react";
+import React, { PropsWithChildren } from "react";
 import ReactDOM from "react-dom";
+//
 type ModalProps = {
   zIndex?: string;
   withShade?: boolean;
@@ -14,11 +10,13 @@ type ModalProps = {
   modalRoot?: string;
   containerClass?: string;
 };
+//
+// Modal component to render any necessary component in a popup view using React portal.
 export const Modal = (props: PropsWithChildren<ModalProps>) => {
   return ReactDOM.createPortal(
     <div
-      className={`fixed inset-0 overflow-y-auto ${
-        props.zIndex ? props.zIndex : "z-999"
+      className={`pageFadeIn fixed inset-0 overflow-y-auto ${
+        props.zIndex ? props.zIndex : "z-50"
       }`}
     >
       {props.ghostClose && (

@@ -13,9 +13,70 @@
   overflow: hidden;
 }
 
+/* Hiding the scrollbar */
+html {
+  overflow: scroll;
+  scrollbar-width: none !important;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
 /* Leaflet sizing */
 .leaflet-container {
-  height: 50vh;
+  height: 75vh;
   width: 100%;
   border-radius: 10px;
+}
+
+/* Animations */
+.pageFadeIn {
+  animation: pageFadeIn ease 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pageFadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.pageInEffectRight {
+  animation: pageInEffectRight ease 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pageInEffectRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

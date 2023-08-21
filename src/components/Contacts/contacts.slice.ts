@@ -127,7 +127,14 @@ const contactSlice = createSlice({
           ...state.availableContacts,
           action.payload.postData,
         ];
-        state.currentContact = action.payload.postData;
+        state.currentContact = {
+          id: 0,
+          firstName: "",
+          lastName: "",
+          email: "",
+          image: "",
+          status: "",
+        };
         state.addContactStatus = AsyncState.FULFILLED;
         state.addContactError = "";
       }

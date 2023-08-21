@@ -6,9 +6,11 @@ import {
   getCovidGraphData,
 } from "./analytics.slice";
 import { RootState } from "../../redux";
-import { CovidLineChart } from "./components/CovidLineChart";
 import { CovidMap } from "./components/CovidMap";
+import { CovidLineChart } from "./components/CovidLineChart";
+import { CovidDashboard } from "./components/CovidDashboard";
 
+// Component to render all analytics related UI
 export const Dashboard = () => {
   const dispatch = useDispatch();
 
@@ -21,17 +23,16 @@ export const Dashboard = () => {
   const covidGraphData = useSelector(
     (state: RootState) => state.analytics.covidGraphData
   );
-  // console.log(worldCovidData);
-  console.log(countryWiseData);
-  // console.log(covidGraphData);
+  //
   useEffect(() => {
     dispatch(getWorldCovidData());
     dispatch(getCountryWiseData());
     dispatch(getCovidGraphData());
-  }, []);
-
+  }, [dispatch]);
+  //
   return (
-    <div className="w-full h-full overflow-y-scroll">
+    <div className="w-full h-full">
+      {worldCovidData && <CovidDashboard />}
       {covidGraphData && <CovidLineChart />}
       {countryWiseData && <CovidMap />}
     </div>

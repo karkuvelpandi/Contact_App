@@ -13,7 +13,6 @@ export const getAllContacts = async () => {
 export const getContact = async (id: number) => {
   const response = await fetch(`http://localhost:5000/contacts/${id}`);
   const jsonResponse = await response.json();
-  console.log(jsonResponse);
   return jsonResponse;
 };
 
@@ -23,9 +22,7 @@ export const deleteContact = async (id: number) => {
     method: "DELETE",
   };
   const response = await fetch(`http://localhost:5000/contacts/${id}`, options);
-  console.log(response);
   const jsonResponse = await response.json();
-  console.log(jsonResponse);
   return jsonResponse;
 };
 
@@ -53,8 +50,6 @@ export const addContact = async (data: Contact) => {
     body: JSON.stringify(data),
   };
   const response = await fetch(`http://localhost:5000/contacts`, options);
-  console.log(response);
   const jsonResponse = await response.json();
-  console.log(jsonResponse);
   return jsonResponse;
 };

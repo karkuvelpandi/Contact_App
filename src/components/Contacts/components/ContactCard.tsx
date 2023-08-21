@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "../../../ui/Button/Index";
-import { Contact } from "../../../types/contact";
-import defaultImg from "../../../ui/images/contact.png";
-import { Modal } from "../../../ui/Modal/Modal";
-import { DeletePopUp } from "./DeletePopUp";
 import { useDispatch } from "react-redux";
-import { deleteContact, getContact, updateContactId } from "../contacts.slice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux";
 import { AsyncState } from "../../../types";
 import { ContactForm } from "./ContactForm";
+import { DeletePopUp } from "./DeletePopUp";
+import { Modal } from "../../../ui/Modal/Modal";
+import { Contact } from "../../../types/contact";
+import { Button } from "../../../ui/Button/Index";
+import defaultImg from "../../../ui/images/contact.png";
+import { deleteContact, getContact, updateContactId } from "../contacts.slice";
+//
 type ContactCardProps = {
   contact: Contact;
 };
+// Responsible for render contact in a card view.
 export const ContactCard = (props: ContactCardProps) => {
   const dispatch = useDispatch();
   const [img, setImg] = useState<string>();
@@ -40,18 +42,28 @@ export const ContactCard = (props: ContactCardProps) => {
   }, [updateContactStatus]);
 
   return (
-    <div className="w-full sm:w-56 sm:h-72 p-2 bg-[#D9D9D9] rounded-md flex flex-wrap sm:flex-col justify-around items-center">
+    <div className="pageFadeIn shadow-lg min-w-[14rem] sm:h-[19rem] p-2 bg-[#D9D9D9] rounded-md flex flex-wrap gap-2 flex-col justify-start items-center">
       <img
-        className=" w-full max-w-[8rem] sm:w-32 h-auto bg-slate-500 rounded-full"
+        className=" w-full max-w-[8rem] sm:w-32 h-auto max-h-[8rem] bg-slate-500 rounded-full"
         src={img}
         onError={() => setImg(defaultImg)}
         alt=""
       />
-      <div className="space-y-2">
-        <div className=" space-y-1">
-          <p>Name : {props.contact.firstName + " " + props.contact.lastName}</p>
-          <p>Email :{props.contact.email}</p>
-          <p>status:{props.contact.status}</p>
+      <div className="space-y-4">
+        <div className=" space-y-1 overflow-auto">
+          <p className="text-xl font-semibold text-center">
+            {props.contact.firstName + " " + props.contact.lastName}
+          </p>
+          <p className="italic text-center"> {props.contact.email}</p>
+          <p
+            className={`${
+              props.contact.status === "active"
+                ? "text-green-500"
+                : "text-red-600"
+            } text-center`}
+          >
+            {props.contact.status}
+          </p>
         </div>
         <div className=" w-full flex justify-around gap-2">
           <Button

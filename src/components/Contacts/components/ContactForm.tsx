@@ -136,7 +136,7 @@ export const ContactForm = (props: ContactFormProps) => {
       <legend
         className={`${
           props.context === "Create" ? "bg-green-300" : "bg-yellow-400"
-        } w-auto ml-auto align-middle mr-auto px-4 py-2 rounded-full font-semibold`}
+        } w-auto ml-auto align-middle mr-auto px-4 py-2 rounded-full font-semibold text-xl`}
       >
         {props.context === "Create" ? "Create Contact" : "Edit Contact"}
       </legend>
