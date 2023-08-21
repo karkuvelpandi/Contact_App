@@ -31,13 +31,13 @@ export const Contacts = () => {
   const isContactsAvailable = availableContacts.length > 0;
   //
   return (
-    <div className="w-full h-full overflow-auto flex-1 flex flex-col justify-start items-center relative ">
-      <div className="h-20 w-full relative">
+    <div className="w-full h-full flex-1 flex flex-col justify-start items-center relative ">
+      <div className="h-20 w-full relative flex justify-center items-center">
         {getAllContactsStatus !== AsyncState.PENDING && (
           <Button
             children="Create Contact"
             className={`w-56 font-semibold border-b-4 border-black active:border-b-0 active:translate-y-1 ${
-              isContactsAvailable && "absolute top-5 right-5"
+              isContactsAvailable && "sm:absolute sm:top-5 sm:right-5"
             }`}
             bgColor="#D9D9D9"
             textColor="black"
@@ -46,7 +46,11 @@ export const Contacts = () => {
         )}
       </div>
       <div className="w-full">
-        {getAllContactsStatus === AsyncState.PENDING && <Loader size="lg" />}
+        {getAllContactsStatus === AsyncState.PENDING && (
+          <div className="w-full h-4/5 flex justify-center items-center">
+            <Loader size="lg" />
+          </div>
+        )}
         {!isContactsAvailable &&
           getAllContactsStatus !== AsyncState.PENDING && (
             <EmptyMessage
@@ -58,7 +62,7 @@ export const Contacts = () => {
             />
           )}
         {isContactsAvailable && (
-          <div className=" bg-slate-400 p-5 flex gap-2 flex-wrap justify-center items-center h-fit overflow-auto">
+          <div className=" m-2 p-2 border-2 border-gray-200 rounded-md flex gap-2 flex-wrap justify-center items-center h-fit overflow-auto">
             {availableContacts.map((contact, index) => {
               return <ContactCard contact={contact} key={index} />;
             })}

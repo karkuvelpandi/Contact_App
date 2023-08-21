@@ -6,6 +6,8 @@ import {
   getCovidGraphData,
 } from "./analytics.slice";
 import { RootState } from "../../redux";
+import { CovidLineChart } from "./components/CovidLineChart";
+import { CovidMap } from "./components/CovidMap";
 
 export const Dashboard = () => {
   const dispatch = useDispatch();
@@ -19,14 +21,19 @@ export const Dashboard = () => {
   const covidGraphData = useSelector(
     (state: RootState) => state.analytics.covidGraphData
   );
-  console.log(worldCovidData);
+  // console.log(worldCovidData);
   console.log(countryWiseData);
-  console.log(covidGraphData);
+  // console.log(covidGraphData);
   useEffect(() => {
     dispatch(getWorldCovidData());
     dispatch(getCountryWiseData());
     dispatch(getCovidGraphData());
   }, []);
 
-  return <div>Dashboard</div>;
+  return (
+    <div className="w-full h-full overflow-y-scroll">
+      {covidGraphData && <CovidLineChart />}
+      {countryWiseData && <CovidMap />}
+    </div>
+  );
 };

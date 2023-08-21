@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 //
@@ -8,6 +8,7 @@ import { Contacts } from "../components/Contacts";
 import { Dashboard } from "../components/Dashboard";
 import { RootState } from "../redux";
 import { updateSidebarVisibility } from "../redux/visibility.slice";
+import { updateHeaderText } from "../redux/app.slice";
 //
 export const ContactPage = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,15 @@ export const ContactPage = () => {
   const isSidebarVisible = useSelector(
     (state: RootState) => state.visibility.isSidebarVisible
   );
+  //
+  useEffect(() => {
+    if (window.location.pathname.includes("dashboard")) {
+      dispatch(updateHeaderText("Analytics Dashboard"));
+    } else {
+      dispatch(updateHeaderText("Contact Page"));
+    }
+  }, [dispatch]);
+  //
   return (
     <>
       <main className=" min-h-screen min-w-full flex flex-col">
