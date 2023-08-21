@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { RootState } from "../../redux";
 import { useDispatch, useSelector } from "react-redux";
 import { ContactIcon } from "../../ui/svgs/ContactIcon";
-import { DashBoardIcon } from "../../ui/svgs/DashBoardIcon";
 import { updateHeaderText } from "../../redux/app.slice";
+import { DashBoardIcon } from "../../ui/svgs/DashBoardIcon";
 import { updateSidebarVisibility } from "../../redux/visibility.slice";
-import { RootState } from "../../redux";
 
+// Side navigation for contact and dashboard section
 export const Sidebar = () => {
   const dispatch = useDispatch();
   // Accessing the store data
@@ -24,7 +25,7 @@ export const Sidebar = () => {
   return (
     <>
       <section
-        className={`w-auto h-full absolute z-10 sm:z-0 sm:h-auto sm:relative sm:block sm:w-52 bg-[#D9D9D9] translate-x-0 ${
+        className={`pageInEffectRight sm:w-44 h-full fixed z-10 sm:block bg-[#D9D9D9] translate-x-0 ${
           isSidebarVisible ? "block" : "hidden"
         }`}
       >

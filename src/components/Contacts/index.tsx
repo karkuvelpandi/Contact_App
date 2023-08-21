@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "../../ui/Button/Index";
-import { EmptyMessage } from "./components/EmptyMessage";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { AsyncState } from "../../types";
-import { Loader } from "../../ui/Loader/Loader";
-import { ContactCard } from "./components/ContactCard";
 import { Modal } from "../../ui/Modal/Modal";
+import { Button } from "../../ui/Button/Index";
+import { Loader } from "../../ui/Loader/Loader";
 import { ContactForm } from "./components/ContactForm";
+import { ContactCard } from "./components/ContactCard";
+import { EmptyMessage } from "./components/EmptyMessage";
 
 // Component to create and display contacts
 export const Contacts = () => {
@@ -36,9 +36,7 @@ export const Contacts = () => {
         {getAllContactsStatus !== AsyncState.PENDING && (
           <Button
             children="Create Contact"
-            className={`w-56 font-semibold border-b-4 border-black active:border-b-0 active:translate-y-1 ${
-              isContactsAvailable && "sm:absolute sm:top-5 sm:right-5"
-            }`}
+            className="w-56 mt-4 font-semibold border-b-4 border-black active:translate-y-1"
             bgColor="#D9D9D9"
             textColor="black"
             onClick={() => setIsModalActive(true)}

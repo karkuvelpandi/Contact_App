@@ -1,15 +1,16 @@
 import React from "react";
 import "leaflet/dist/leaflet.css";
+import { Icon } from "leaflet";
+import { useSelector } from "react-redux";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { RootState } from "../../../redux";
-import { useSelector } from "react-redux";
-import { Loader } from "../../../ui/Loader/Loader";
 import { AsyncState } from "../../../types";
-import { DivIcon, Icon, divIcon, point } from "leaflet";
+import { Loader } from "../../../ui/Loader/Loader";
+import { MarkerData } from "../../../types/dashboard";
 import MarkerIcon from "../../../ui/images/location.png";
 import { transformMarkerData } from "../../../utils/general.util";
-import { MarkerData } from "../../../types/dashboard";
 
+// Component to render Map with marker.
 export const CovidMap = () => {
   const countryWiseData = useSelector(
     (state: RootState) => state.analytics.countryWiseData
@@ -25,24 +26,17 @@ export const CovidMap = () => {
 
   // markers
   const dataMarker = transformMarkerData(countryWiseData);
-  const markers = [
-    {
-      geocode: [48.86, 2.3522],
-      popUp: "Hello, I am pop up 1",
-    },
-    {
-      geocode: [48.85, 2.3522],
-      popUp: "Hello, I am pop up 2",
-    },
-    {
-      geocode: [48.855, 2.34],
-      popUp: "Hello, I am pop up 3",
-    },
-  ];
+  // Example marker structure
+  // const markers = [
+  //   {
+  //     geocode: [48.86, 2.3522],
+  //     popUp: "Hello, I am pop up ",
+  //   },
+  // ];
 
   return (
-    <div className=" w-full h-[425px] p-2 pb-5 border-2 rounded-md space-y-3">
-      <p className="text-lg font-semibold text-center p-1 bg-[#d9d9d9] rounded-full">
+    <div className=" pageFadeIn w-full h-[425px] p-2 border-2 rounded-md space-y-3">
+      <p className="text-lg font-semibold text-center p-1 bg-[#d9d9d9]  rounded-full">
         World Covid-19 Map - Country Wise
       </p>
       {countryWiseDataStatus === AsyncState.PENDING && (

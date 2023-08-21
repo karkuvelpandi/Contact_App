@@ -5,6 +5,7 @@ import { RootState } from "../../../redux";
 import { AsyncState } from "../../../types";
 import { Loader } from "../../../ui/Loader/Loader";
 
+// Component for render line chart of covid fluctuations over a period of time.
 export const CovidLineChart = () => {
   const [dateCategory, setDateCategory] = useState<string[]>();
   const [casesData, setCasesData] = useState<number[]>();
@@ -17,7 +18,7 @@ export const CovidLineChart = () => {
   const covidGraphDataStatus = useSelector(
     (state: RootState) => state.analytics.covidGraphDataStatus
   );
-
+  //
   useEffect(() => {
     if (covidGraphDataStatus === AsyncState.FULFILLED && covidGraphData) {
       let dateCategory = Object.keys(covidGraphData.cases);
@@ -45,7 +46,7 @@ export const CovidLineChart = () => {
       data: recoveryData as number[],
     },
   ];
-
+  //
   const options = {
     chart: {
       id: "zoomable-chart",
@@ -62,6 +63,7 @@ export const CovidLineChart = () => {
       },
     },
   };
+  //
   return (
     <div className=" w-full h-[425px] p-2 border-2 rounded-md">
       <p className="text-lg font-semibold text-center p-1 bg-[#d9d9d9] rounded-full">

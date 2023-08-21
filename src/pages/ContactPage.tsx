@@ -10,6 +10,7 @@ import { RootState } from "../redux";
 import { updateSidebarVisibility } from "../redux/visibility.slice";
 import { updateHeaderText } from "../redux/app.slice";
 //
+// Component to render all Contact and dashboard related UI
 export const ContactPage = () => {
   const dispatch = useDispatch();
   // Accessing the store
@@ -30,26 +31,24 @@ export const ContactPage = () => {
   //
   return (
     <>
-      <main className=" min-h-screen min-w-full flex flex-col">
+      <main>
         <ApplicationHeader
           headerText={appHeaderText ? appHeaderText : "Contacts Page"}
         />
-        <section className=" h-auto w-full flex flex-1 justify-start">
-          <Sidebar />
+        <Sidebar />
+        <section className="sm:ml-44 h-[calc(100vh-64px)] relative z-0 w-auto overflow-y-auto">
           <Routes>
             <Route path="/" element={<Contacts />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
-          {isSidebarVisible && (
-            <div
-              onClick={() =>
-                dispatch(updateSidebarVisibility(!isSidebarVisible))
-              }
-              className="bg-black opacity-30 absolute top-20 bottom-0 inset-x-0 z-0"
-            />
-          )}
         </section>
-      </main>{" "}
+        {isSidebarVisible && (
+          <div
+            onClick={() => dispatch(updateSidebarVisibility(!isSidebarVisible))}
+            className="bg-black opacity-50 absolute top-16 bottom-0 inset-x-0 z-0"
+          />
+        )}
+      </main>
     </>
   );
 };
