@@ -58,17 +58,17 @@ export const Contacts = () => {
   //
   return (
     <div className="w-full h-full flex-1 flex flex-col justify-start items-center relative ">
-      <div className="py-4 w-full relative flex justify-around flex-wrap gap-2 items-center mt-2">
+      <div className="py-4 w-full relative flex justify-center flex-wrap gap-4 items-center mt-2">
         {getAllContactsStatus !== AsyncState.PENDING && (
           <Button
             children="Create Contact"
-            className="w-56  font-semibold border-b-4 border-black active:translate-y-1"
+            className="w-56 font-semibold border-b-4 border-black active:translate-y-1"
             bgColor="#D9D9D9"
             textColor="black"
             onClick={() => setIsModalActive(true)}
           />
         )}
-        <div className="flex border-gray-400 border-2 p-1.5  rounded-lg">
+        <div className="flex border-gray-400 border-2 p-1.5 rounded-lg ">
           <input
             type="text"
             placeholder="Search contact..."
