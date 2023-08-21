@@ -22,7 +22,7 @@ export const ApplicationHeader = (props: ApplicationHeaderProps) => {
       )}
       <p
         style={{ color: props.textColor ?? "black" }}
-        className="flex flex-1 justify-center text-3xl sm:text-4xl font-semibold sm:ml-44"
+        className="flex flex-1 justify-center text-xl sm:text-2xl font-semibold sm:ml-44"
       >
         {props.headerText}
       </p>
