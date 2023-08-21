@@ -24,7 +24,6 @@ export const CovidDashboard = () => {
   const worldCovidDataStatus = useSelector(
     (state: RootState) => state.analytics.worldCovidDataStatus
   );
-  console.log(worldCovidData);
 
   return (
     <div className=" w-full min-h-[425px] p-2 border-2 rounded-md ">

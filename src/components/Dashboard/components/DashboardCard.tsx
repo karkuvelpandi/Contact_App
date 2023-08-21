@@ -1,8 +1,9 @@
 import React from "react";
+import CountUp from "react-countup";
 import { timeAgo } from "../../../utils/general.util";
 
 type DashboardCardDesign = {
-  dataCount: number | string;
+  dataCount: number;
   title: string;
   svgIcon: any;
   svgIconSize: "sm" | "md" | "lg";
@@ -35,7 +36,11 @@ export const DashboardCard = (props: DashboardCardDesign) => {
       />
       <div className="flex flex-col w-8/12 flex-nowrap">
         <p className=" text-base sm:text-lg font-semibold">{props.title}</p>
-        <p className="text-2xl sm:text-4xl font-bold">{props.dataCount}</p>
+        <CountUp
+          duration={10}
+          className="text-xl sm:text-3xl font-bold"
+          end={props.dataCount}
+        />
         {props.excessPoint && (
           <p className=" text-sm sm:text-base">{props.excessPoint}</p>
         )}
