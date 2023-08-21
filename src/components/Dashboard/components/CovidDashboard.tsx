@@ -27,7 +27,7 @@ export const CovidDashboard = () => {
   console.log(worldCovidData);
 
   return (
-    <div className=" w-full min-h-[425px] p-2 border-2 rounded-md">
+    <div className=" w-full min-h-[425px] p-2 border-2 rounded-md ">
       <p className="text-lg font-semibold text-center p-1 bg-[#d9d9d9] rounded-full">
         World Covid-19 Overall - Dashboard
       </p>
@@ -37,17 +37,16 @@ export const CovidDashboard = () => {
         </div>
       )}
       {worldCovidDataStatus === AsyncState.FULFILLED && (
-        <div className="p-2 flex gap-3 flex-wrap">
+        <div className="p-2 flex gap-3 flex-wrap mt-3">
           <DashboardCard
-            title="Today Cases - Deaths"
+            title="Today New Cases"
             svgIconSize={isMobileView ? "md" : "lg"}
-            dataCount={
-              worldCovidData.todayCases + " - " + worldCovidData.todayDeaths
-            }
+            dataCount={worldCovidData.todayCases}
             bgColor="blue"
             svgIcon={affected}
             textColor="white"
             updatedAt={worldCovidData.updated}
+            excessPoint={`Today Death Cases ${worldCovidData.todayDeaths}`}
           />
           <DashboardCard
             title="All Time Cases"
@@ -58,7 +57,7 @@ export const CovidDashboard = () => {
             excessPoint={
               Math.floor(
                 (worldCovidData.cases / worldCovidData.population) * 100
-              ) + "% from world population"
+              ) + "% of world's population"
             }
             updatedAt={worldCovidData.updated}
           />

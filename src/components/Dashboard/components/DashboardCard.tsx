@@ -34,10 +34,10 @@ export const DashboardCard = (props: DashboardCardDesign) => {
         } w-4/12`}
       />
       <div className="flex flex-col w-8/12 flex-nowrap">
-        <p className=" text-base sm:text-lg">{props.title}</p>
-        <p className="text-xl sm:text-3xl font-semibold">{props.dataCount}</p>
+        <p className=" text-base sm:text-lg font-semibold">{props.title}</p>
+        <p className="text-2xl sm:text-4xl font-bold">{props.dataCount}</p>
         {props.excessPoint && (
-          <p className=" text-base sm:text-lg">{props.excessPoint}</p>
+          <p className=" text-sm sm:text-base">{props.excessPoint}</p>
         )}
         <p className=" text-xs sm:text-sm italic text-black-400">
           {" "}
