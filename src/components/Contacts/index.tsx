@@ -88,7 +88,12 @@ export const Contacts = () => {
           </button>
         </div>
       </div>
-      <div className="w-full">
+      <div
+        className={`w-full ${
+          getAllContactsStatus === AsyncState.PENDING ||
+          (!isContactsAvailable && "mt-24 flex justify-center")
+        }`}
+      >
         {getAllContactsStatus === AsyncState.PENDING && (
           <div className="w-full h-4/5 flex justify-center items-center">
             <Loader size="lg" />

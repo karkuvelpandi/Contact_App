@@ -13,7 +13,7 @@ export const DeletePopUp = (props: DeletePopUpProps) => {
     (state: RootState) => state.contact.deleteContactStatus
   );
   return (
-    <div className="flex flex-col justify-center w-[calc(100vw-30px)] sm:w-96 items-center gap-5 bg-white p-5 rounded-md">
+    <div className="flex flex-col justify-start h-40 w-[calc(100vw-30px)] sm:w-96 items-center gap-5 bg-white p-5 rounded-md">
       {deleteContactStatus === AsyncState.PENDING ? (
         <Loader size="md" />
       ) : (
@@ -22,7 +22,7 @@ export const DeletePopUp = (props: DeletePopUpProps) => {
         </p>
       )}
 
-      <div className="flex justify-around w-full ">
+      <div className="flex justify-around w-full absolute bottom-5 ">
         <Button
           className="w-20"
           bgColor="red"

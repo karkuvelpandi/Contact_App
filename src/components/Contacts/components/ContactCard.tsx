@@ -67,7 +67,7 @@ export const ContactCard = (props: ContactCardProps) => {
             {props.contact.status}
           </p>
         </div>
-        <div className=" w-full flex justify-around gap-2">
+        <div className=" w-full flex justify-center gap-6">
           <Button
             children={<img src={editIcon} alt="" />}
             className="w-10 h-10"

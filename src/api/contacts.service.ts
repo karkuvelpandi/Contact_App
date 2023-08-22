@@ -1,17 +1,17 @@
 // Contacts service file
 
 import { Contact } from "../types/contact";
-
+const jsonApi = "https://json-server-pk.onrender.com/contacts";
 // Function responsible for fetching all contacts
 export const getAllContacts = async () => {
-  const response = await fetch("http://localhost:5000/contacts");
+  const response = await fetch(`${jsonApi}`);
   const jsonResponse = await response.json();
   return jsonResponse;
 };
 
 // Function responsible for fetching single contact based on unique id
 export const getContact = async (id: number) => {
-  const response = await fetch(`http://localhost:5000/contacts/${id}`);
+  const response = await fetch(`${jsonApi}/${id}`);
   const jsonResponse = await response.json();
   return jsonResponse;
 };
@@ -21,7 +21,7 @@ export const deleteContact = async (id: number) => {
   const options = {
     method: "DELETE",
   };
-  const response = await fetch(`http://localhost:5000/contacts/${id}`, options);
+  const response = await fetch(`${jsonApi}/${id}`, options);
   const jsonResponse = await response.json();
   return jsonResponse;
 };
@@ -35,7 +35,7 @@ export const updateContact = async (id: number, data: Contact) => {
     },
     body: JSON.stringify(data),
   };
-  const response = await fetch(`http://localhost:5000/contacts/${id}`, options);
+  const response = await fetch(`${jsonApi}/${id}`, options);
   const jsonResponse = await response.json();
   return jsonResponse;
 };
@@ -49,7 +49,7 @@ export const addContact = async (data: Contact) => {
     },
     body: JSON.stringify(data),
   };
-  const response = await fetch(`http://localhost:5000/contacts`, options);
+  const response = await fetch(`${jsonApi}`, options);
   const jsonResponse = await response.json();
   return jsonResponse;
 };

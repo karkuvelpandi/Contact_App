@@ -4,6 +4,7 @@ import { RootState } from "../../../redux";
 import { Contact } from "../../../types/contact";
 import { isValidEmail } from "../../../utils/general.util";
 import { addContact, updateContact } from "../contacts.slice";
+import { AsyncState } from "../../../types";
 //
 type ContactFormProps = {
   context: "Create" | "Edit";
@@ -208,7 +209,7 @@ export const ContactForm = (props: ContactFormProps) => {
         </div>
         <div className="flex flex-col">
           <label className=" italic font-semibold text-gray-400">
-            Upload Image <span className="text-red-500">*</span>
+            Upload Image
           </label>
           <div className="flex justify-between">
             <input
@@ -254,15 +255,19 @@ export const ContactForm = (props: ContactFormProps) => {
         </div>
         <div className="w-full flex justify-center">
           <button
-            className="w-24 h-8 bg-blue-500 rounded-sm  text-white"
+            className={`w-24 h-8 bg-blue-500 rounded-sm  text-white ${
+              (updateContactStatus === AsyncState.PENDING ||
+                addContactStatus === AsyncState.PENDING) &&
+              " cursor-wait"
+            }`}
             onClick={(e: any) =>
               props.context === "Create" ? submitHandler(e) : updateHandler(e)
             }
           >
-            {(updateContactStatus || addContactStatus) === "pending"
-              ? props.context === "Create"
-                ? "Creating..."
-                : "Updating..."
+            {updateContactStatus === AsyncState.PENDING
+              ? "Updating..."
+              : addContactStatus === AsyncState.PENDING
+              ? "Creating..."
               : props.context === "Create"
               ? "Create"
               : "Update"}
