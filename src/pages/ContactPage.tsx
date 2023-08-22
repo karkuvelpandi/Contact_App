@@ -32,9 +32,7 @@ export const ContactPage = () => {
   return (
     <>
       <main>
-        <ApplicationHeader
-          headerText={appHeaderText ? appHeaderText : "Contacts Page"}
-        />
+        <ApplicationHeader headerText={appHeaderText} />
         <Sidebar />
         <section className="sm:ml-44 h-[calc(100vh-64px)] relative z-0 w-auto overflow-y-auto">
           <Routes>
@@ -45,7 +43,7 @@ export const ContactPage = () => {
         {isSidebarVisible && (
           <div
             onClick={() => dispatch(updateSidebarVisibility(!isSidebarVisible))}
-            className="bg-black opacity-50 absolute top-16 bottom-0 inset-x-0 z-0"
+            className="bg-black opacity-50 fixed top-16 h-full inset-x-0 z-0"
           />
         )}
       </main>

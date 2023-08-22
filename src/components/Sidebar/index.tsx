@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { RootState } from "../../redux";
 import { useDispatch, useSelector } from "react-redux";
-import { ContactIcon } from "../../ui/svgs/ContactIcon";
 import { updateHeaderText } from "../../redux/app.slice";
-import { DashBoardIcon } from "../../ui/svgs/DashBoardIcon";
+import contactIcon from "../../ui/svgs/contactIcon.svg";
+import dashBoardIcon from "../../ui/svgs/dashboardIcon.svg";
 import { updateSidebarVisibility } from "../../redux/visibility.slice";
 
 // Side navigation for contact and dashboard section
@@ -34,7 +34,7 @@ export const Sidebar = () => {
           onClick={() => onClick("Contacts Page")}
           className="flex justify-start items-center gap-1 p-6 hover:scale-105 cursor-pointer"
         >
-          <ContactIcon size="25" />
+          <img src={contactIcon} height="25px" width="25px" alt="" />
           {!isMobileView && <span className="font-semibold">Contacts</span>}
         </Link>
         <hr />
@@ -43,7 +43,7 @@ export const Sidebar = () => {
           onClick={() => onClick("Analytics Dashboard")}
           className="flex justify-start items-center gap-1 p-6 hover:scale-105 cursor-pointer"
         >
-          <DashBoardIcon size="25" />
+          <img src={dashBoardIcon} height="25px" width="25px" alt="" />
           {!isMobileView && <span className="font-semibold">DashBoard</span>}
         </Link>
         <hr />
