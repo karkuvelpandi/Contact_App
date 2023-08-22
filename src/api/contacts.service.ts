@@ -1,33 +1,35 @@
 // Contacts service file
 
-import { Contact } from "../types/contact";
-const jsonApi = "https://json-server-pk.onrender.com/contacts";
+import { ContactPostData } from "../types/contact";
+// const jsonApi = "https://json-server-pk.onrender.com/contacts";
+const nodeApi = "https://cute-hare-attire.cyclic.app/contact-app";
+
 // Function responsible for fetching all contacts
 export const getAllContacts = async () => {
-  const response = await fetch(`${jsonApi}`);
+  const response = await fetch(`${nodeApi}`);
   const jsonResponse = await response.json();
   return jsonResponse;
 };
 
 // Function responsible for fetching single contact based on unique id
-export const getContact = async (id: number) => {
-  const response = await fetch(`${jsonApi}/${id}`);
+export const getContact = async (_id: string) => {
+  const response = await fetch(`${nodeApi}/${_id}`);
   const jsonResponse = await response.json();
   return jsonResponse;
 };
 
 // Function responsible for deleting single contact based on unique id
-export const deleteContact = async (id: number) => {
+export const deleteContact = async (_id: string) => {
   const options = {
     method: "DELETE",
   };
-  const response = await fetch(`${jsonApi}/${id}`, options);
+  const response = await fetch(`${nodeApi}/${_id}`, options);
   const jsonResponse = await response.json();
   return jsonResponse;
 };
 
 // Function responsible for fetching single contact based on unique id
-export const updateContact = async (id: number, data: Contact) => {
+export const updateContact = async (_id: string, data: ContactPostData) => {
   const options = {
     method: "PUT",
     headers: {
@@ -35,13 +37,13 @@ export const updateContact = async (id: number, data: Contact) => {
     },
     body: JSON.stringify(data),
   };
-  const response = await fetch(`${jsonApi}/${id}`, options);
+  const response = await fetch(`${nodeApi}/${_id}`, options);
   const jsonResponse = await response.json();
   return jsonResponse;
 };
 
 // Function responsible for fetching single contact based on unique id
-export const addContact = async (data: Contact) => {
+export const addContact = async (data: ContactPostData) => {
   const options = {
     method: "POST",
     headers: {
@@ -49,7 +51,7 @@ export const addContact = async (data: Contact) => {
     },
     body: JSON.stringify(data),
   };
-  const response = await fetch(`${jsonApi}`, options);
+  const response = await fetch(`${nodeApi}/create`, options);
   const jsonResponse = await response.json();
   return jsonResponse;
 };

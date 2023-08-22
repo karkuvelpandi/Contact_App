@@ -2,7 +2,8 @@ import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ActionState, AsyncState } from "../../types";
 import { Actions } from "./contacts.saga";
 import {
-  Contact,
+  ContactGetData,
+  ContactPostData,
   AddContactData,
   UpdateContactData,
 } from "../../types/contact";
@@ -13,14 +14,14 @@ import {
 export const getAllContacts = createAction(
   Actions.getAllContacts + ActionState.REQUEST
 );
-export const getContact = createAction<number>(
+export const getContact = createAction<string>(
   Actions.getContact + ActionState.REQUEST
 );
 
-export const deleteContact = createAction<number>(
+export const deleteContact = createAction<string>(
   Actions.removeContact + ActionState.REQUEST
 );
-export const addContact = createAction<Contact>(
+export const addContact = createAction<ContactPostData>(
   Actions.addContact + ActionState.REQUEST
 );
 export const updateContact = createAction<UpdateContactData>(
@@ -28,10 +29,10 @@ export const updateContact = createAction<UpdateContactData>(
 );
 
 interface ContactState {
-  availableContacts: Contact[];
+  availableContacts: ContactGetData[];
   getAllContactsStatus: string;
   getAllContactsError: string;
-  currentContact: Contact;
+  currentContact: ContactGetData;
   getContactStatus: string;
   getContactError: string;
   addContactStatus: string;
@@ -40,7 +41,7 @@ interface ContactState {
   deleteContactError: string;
   updateContactStatus: string;
   updateContactError: string;
-  updateContactId: number;
+  updateContactId: string;
 }
 
 const initialState: ContactState = {
@@ -48,12 +49,14 @@ const initialState: ContactState = {
   getAllContactsStatus: AsyncState.IDLE,
   getAllContactsError: "",
   currentContact: {
+    _id: "",
     id: 0,
     firstName: "",
     lastName: "",
     email: "",
     image: "",
     status: "",
+    __v: 0,
   },
   getContactStatus: AsyncState.IDLE,
   getContactError: "",
@@ -63,14 +66,14 @@ const initialState: ContactState = {
   deleteContactError: "",
   updateContactStatus: AsyncState.IDLE,
   updateContactError: "",
-  updateContactId: 0,
+  updateContactId: "",
 };
 
 const contactSlice = createSlice({
   name: "contact",
   initialState,
   reducers: {
-    updateContactId: (state, action: PayloadAction<number>) => {
+    updateContactId: (state, action: PayloadAction<string>) => {
       state.updateContactId = action.payload;
     },
   },
@@ -82,7 +85,7 @@ const contactSlice = createSlice({
     });
     builder.addCase(
       Actions.getAllContacts + ActionState.FULFILLED,
-      (state, action: PayloadAction<Contact[]>) => {
+      (state, action: PayloadAction<ContactGetData[]>) => {
         state.availableContacts = action.payload;
         state.getAllContactsStatus = AsyncState.FULFILLED;
         state.getAllContactsError = "";
@@ -102,7 +105,7 @@ const contactSlice = createSlice({
     });
     builder.addCase(
       Actions.getContact + ActionState.FULFILLED,
-      (state, action: PayloadAction<Contact>) => {
+      (state, action: PayloadAction<ContactGetData>) => {
         state.currentContact = action.payload;
         state.getContactStatus = AsyncState.FULFILLED;
         state.getContactError = "";
@@ -123,17 +126,20 @@ const contactSlice = createSlice({
     builder.addCase(
       Actions.addContact + ActionState.FULFILLED,
       (state, action: PayloadAction<AddContactData>) => {
+        console.log(action.payload.data);
         state.availableContacts = [
           ...state.availableContacts,
-          action.payload.postData,
+          action.payload.data.contact,
         ];
         state.currentContact = {
+          _id: "",
           id: 0,
           firstName: "",
           lastName: "",
           email: "",
           image: "",
           status: "",
+          __v: 0,
         };
         state.addContactStatus = AsyncState.FULFILLED;
         state.addContactError = "";
@@ -153,9 +159,9 @@ const contactSlice = createSlice({
     });
     builder.addCase(
       Actions.updateContact + ActionState.FULFILLED,
-      (state, action: PayloadAction<Contact>) => {
+      (state, action: PayloadAction<ContactGetData>) => {
         state.availableContacts = state.availableContacts.map((contact) =>
-          contact.id === action.payload.id ? action.payload : contact
+          contact._id === action.payload._id ? action.payload : contact
         );
         state.updateContactStatus = AsyncState.FULFILLED;
         state.updateContactError = "";
@@ -175,9 +181,9 @@ const contactSlice = createSlice({
     });
     builder.addCase(
       Actions.removeContact + ActionState.FULFILLED,
-      (state, action: PayloadAction<number>) => {
+      (state, action: PayloadAction<string>) => {
         state.availableContacts = state.availableContacts.filter(
-          (contact) => contact.id !== action.payload
+          (contact) => contact._id !== action.payload
         );
         state.deleteContactStatus = AsyncState.FULFILLED;
         state.deleteContactError = "";

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux";
-import { Contact } from "../../../types/contact";
+import { ContactPostData } from "../../../types/contact";
 import { isValidEmail } from "../../../utils/general.util";
 import { addContact, updateContact } from "../contacts.slice";
 import { AsyncState } from "../../../types";
@@ -12,7 +12,7 @@ type ContactFormProps = {
 // Component responsible for handling create and edit form according to the context given.
 export const ContactForm = (props: ContactFormProps) => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState<Contact>({
+  const [formData, setFormData] = useState<ContactPostData>({
     id: 0,
     firstName: "",
     lastName: "",
@@ -116,7 +116,7 @@ export const ContactForm = (props: ContactFormProps) => {
     if (validateForm()) {
       dispatch(
         updateContact({
-          id: updateContactId,
+          _id: updateContactId,
           data: formData,
         })
       );

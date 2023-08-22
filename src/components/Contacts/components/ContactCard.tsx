@@ -6,7 +6,7 @@ import { AsyncState } from "../../../types";
 import { ContactForm } from "./ContactForm";
 import { DeletePopUp } from "./DeletePopUp";
 import { Modal } from "../../../ui/Modal/Modal";
-import { Contact } from "../../../types/contact";
+import { ContactGetData } from "../../../types/contact";
 import { Button } from "../../../ui/Button/Index";
 import defaultImg from "../../../ui/images/contact.png";
 import deleteIcon from "../../../ui/svgs/deleteIcon.svg";
@@ -14,7 +14,7 @@ import editIcon from "../../../ui/svgs/editIcon.svg";
 import { deleteContact, getContact, updateContactId } from "../contacts.slice";
 //
 type ContactCardProps = {
-  contact: Contact;
+  contact: ContactGetData;
 };
 // Responsible for render contact in a card view.
 export const ContactCard = (props: ContactCardProps) => {
@@ -74,8 +74,8 @@ export const ContactCard = (props: ContactCardProps) => {
             bgColor="green"
             onClick={() => {
               setActiveModal("Edit");
-              dispatch(updateContactId(props.contact.id));
-              dispatch(getContact(props.contact.id));
+              dispatch(updateContactId(props.contact._id));
+              dispatch(getContact(props.contact._id));
             }}
           />
           <Button
@@ -98,7 +98,7 @@ export const ContactCard = (props: ContactCardProps) => {
           {activeModal === "Edit" && <ContactForm context="Edit" />}
           {activeModal === "Delete" && (
             <DeletePopUp
-              onYes={() => dispatch(deleteContact(props.contact.id))}
+              onYes={() => dispatch(deleteContact(props.contact._id))}
               onNo={() => setActiveModal("")}
             />
           )}

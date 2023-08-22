@@ -1,4 +1,4 @@
-export interface Contact {
+export interface ContactPostData {
   id: number;
   firstName: string;
   lastName: string;
@@ -7,17 +7,28 @@ export interface Contact {
   status: string;
 }
 
-export interface UpdateContactData {
+export interface ContactGetData {
+  _id: string;
   id: number;
-  data: Contact;
+  firstName: string;
+  lastName: string;
+  email: string;
+  image: string;
+  status: string;
+  __v?: number;
+}
+
+export interface UpdateContactData {
+  _id: string;
+  data: ContactPostData;
 }
 export interface UpdateContactResponse {
-  id: number;
-  postData: Contact;
+  _id: string;
+  postData: ContactPostData;
   data: any;
 }
 
 export interface AddContactData {
-  postData: Contact;
+  postData: ContactPostData;
   data: any;
 }

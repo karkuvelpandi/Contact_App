@@ -2,7 +2,7 @@ import { put, call, takeLatest } from "redux-saga/effects";
 import { ActionState } from "../../types";
 import { PayloadAction } from "@reduxjs/toolkit";
 import * as API from "../../api/contacts.service";
-import { Contact, UpdateContactData } from "../../types/contact";
+import { ContactPostData, UpdateContactData } from "../../types/contact";
 export const Actions = {
   addContact: "contact/add-contact ",
   getAllContacts: "contact/get-all-contacts ",
@@ -14,7 +14,7 @@ export const Actions = {
 function* addContactSaga() {
   yield takeLatest(
     Actions.addContact + ActionState.REQUEST,
-    function* (action: PayloadAction<Contact>): any {
+    function* (action: PayloadAction<ContactPostData>): any {
       try {
         yield put({
           type: Actions.addContact + ActionState.PENDING,
@@ -67,7 +67,7 @@ function* getAllContactsSaga() {
 function* getContactSaga() {
   yield takeLatest(
     Actions.getContact + ActionState.REQUEST,
-    function* (action: PayloadAction<number>): any {
+    function* (action: PayloadAction<string>): any {
       try {
         yield put({
           type: Actions.getContact + ActionState.PENDING,
@@ -92,7 +92,7 @@ function* getContactSaga() {
 function* removeContactSaga() {
   yield takeLatest(
     Actions.removeContact + ActionState.REQUEST,
-    function* (action: PayloadAction<number>): any {
+    function* (action: PayloadAction<string>): any {
       try {
         yield put({
           type: Actions.removeContact + ActionState.PENDING,
@@ -123,13 +123,13 @@ function* updateContactSaga() {
           type: Actions.updateContact + ActionState.PENDING,
         });
         const data = yield call(() =>
-          API.updateContact(action.payload.id, action.payload.data)
+          API.updateContact(action.payload._id, action.payload.data)
         );
         if (!data) throw new Error();
 
         yield put({
           type: Actions.updateContact + ActionState.FULFILLED,
-          payload: data,
+          payload: data.contact,
         });
       } catch (error: any) {
         yield put({

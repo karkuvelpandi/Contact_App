@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { AsyncState } from "../../types";
 import { Modal } from "../../ui/Modal/Modal";
-import { Contact } from "../../types/contact";
+import { ContactGetData } from "../../types/contact";
 import { Button } from "../../ui/Button/Index";
 import { Loader } from "../../ui/Loader/Loader";
 import searchIcon from "../../ui/svgs/searchIcon.svg";
@@ -14,7 +14,7 @@ import { EmptyMessage } from "./components/EmptyMessage";
 export const Contacts = () => {
   const [isModalActive, setIsModalActive] = useState<boolean>(false);
   const [searchName, setSearchName] = useState<string>("");
-  const [allContacts, setAllContacts] = useState<Contact[]>();
+  const [allContacts, setAllContacts] = useState<ContactGetData[]>();
   // Accessing the store
   const availableContacts = useSelector(
     (state: RootState) => state.contact.availableContacts
@@ -35,7 +35,7 @@ export const Contacts = () => {
       setIsModalActive(false);
     }
   }, [addContactStatus]);
-  console.log(allContacts);
+
   //Function to filter and update contacts
   let searchHandler = () => {
     if (!searchName) {
@@ -112,7 +112,7 @@ export const Contacts = () => {
         {isContactsAvailable && (
           <div className=" m-2 p-2 border-2 border-gray-200 rounded-md flex gap-2 flex-wrap justify-center sm:justify-start items-center h-fit overflow-auto">
             {allContacts &&
-              allContacts.map((contact, index) => {
+              allContacts.map((contact: ContactGetData, index) => {
                 return <ContactCard contact={contact} key={index} />;
               })}
             {allContacts?.length === 0 && (
