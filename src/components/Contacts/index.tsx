@@ -58,7 +58,7 @@ export const Contacts = () => {
   //
   return (
     <div className="w-full h-full flex-1 flex flex-col justify-start items-center relative ">
-      <div className="py-4 w-full relative flex justify-center flex-wrap gap-4 items-center mt-2">
+      <div className="py-4 w-full relative flex justify-center sm:justify-between px-6 flex-wrap gap-4 items-center mt-2">
         {getAllContactsStatus !== AsyncState.PENDING && (
           <Button
             children="Create Contact"
@@ -110,7 +110,7 @@ export const Contacts = () => {
             />
           )}
         {isContactsAvailable && (
-          <div className=" m-2 p-2 border-2 border-gray-200 rounded-md flex gap-2 flex-wrap justify-center items-center h-fit overflow-auto">
+          <div className=" m-2 p-2 border-2 border-gray-200 rounded-md flex gap-2 flex-wrap justify-center sm:justify-start items-center h-fit overflow-auto">
             {allContacts &&
               allContacts.map((contact, index) => {
                 return <ContactCard contact={contact} key={index} />;
